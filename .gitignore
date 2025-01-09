@@ -1,9 +1,13 @@
-HELP.md
+### Gradle ###
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
+
+### Spring Boot ###
+target/
+*.class
+*.jar
+*.war
 
 ### STS ###
 .apt_generated
@@ -14,17 +18,13 @@ build/
 .springBeans
 .sts4-cache
 bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
 out/
-!**/src/main/**/out/
-!**/src/test/**/out/
 
 ### NetBeans ###
 /nbproject/private/
@@ -56,9 +56,15 @@ logs/
 ### Environment ###
 .env
 *.env
+application.properties
+application.yml
 
-### Build ###
-*.class
-*.jar
-*.war
+### Maven (추가 가능성 대비) ###
+pom.xml
+.mvn/
 target/
+
+### 기타 ###
+*.swp          # Vim 임시 파일
+*.swo          # Vim 임시 파일
+~$*            # MS Office 임시 파일
