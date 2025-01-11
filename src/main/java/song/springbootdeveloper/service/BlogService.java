@@ -6,6 +6,8 @@ import song.springbootdeveloper.domain.Article;
 import song.springbootdeveloper.dto.AddArticleRequest;
 import song.springbootdeveloper.repository.BlogRepository;
 
+import java.util.List;
+
 @RequiredArgsConstructor //final, @NotNull이 붙은 필드를 포함하는 생성자 즉 초기화가 필요한 필드만 포함 + 불변 객체 설계에 사용
 @Service
 public class BlogService {
@@ -19,5 +21,10 @@ public class BlogService {
         Article tmpArticle = request.toEntity();
         return blogRepository.save(tmpArticle);
         */
+    }
+
+    //블로그 모든 글 확인 메서드
+    public List<Article> findAll(){
+        return blogRepository.findAll();
     }
 }
