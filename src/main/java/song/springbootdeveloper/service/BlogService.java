@@ -1,9 +1,11 @@
 package song.springbootdeveloper.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import song.springbootdeveloper.domain.Article;
 import song.springbootdeveloper.dto.AddArticleRequest;
+import song.springbootdeveloper.dto.UpdateArticleRequest;
 import song.springbootdeveloper.repository.BlogRepository;
 
 import java.util.List;
@@ -14,7 +16,7 @@ public class BlogService {
 
     private final BlogRepository blogRepository;
 
-    //블로그 글 추가 메서드
+    //글 추가 메서드
     public Article save(AddArticleRequest request) {
         return blogRepository.save(request.toEntity());
         /* return ~~~와 아래 코드는 완전히 같다
@@ -23,8 +25,30 @@ public class BlogService {
         */
     }
 
-    //블로그 모든 글 확인 메서드
+    //모든 글 확인 메서드
     public List<Article> findAll(){
         return blogRepository.findAll();
     }
+
+    //1개 글 확인 메서드
+    public Article findById(long id) {
+        return blogRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("not found: " + id));
+    }
+
+    //1개 글 삭제 메서드
+    public void delete(long id) {
+        blogRepository.deleteById(id);
+    }
+
+    //글 수정 메서드
+    @Transactional
+    public Article update(long id, UpdateArticleRequest request) {
+        Article article = blogRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("not found: " + id));
+
+        article.update(request.getTitle(), request.getContent());
+        return article;
+    }
+
 }

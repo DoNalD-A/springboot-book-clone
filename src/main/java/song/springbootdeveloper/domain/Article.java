@@ -27,4 +27,10 @@ public class Article {
         this.content = content;
     }
 
+    //수정(UPDATE)를 위한 메서드
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
 }
