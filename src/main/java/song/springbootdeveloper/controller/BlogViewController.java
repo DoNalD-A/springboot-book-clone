@@ -4,7 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import song.springbootdeveloper.domain.Article;
 import song.springbootdeveloper.dto.ArticleListViewResponse;
+import song.springbootdeveloper.dto.ArticleViewResponse;
 import song.springbootdeveloper.service.BlogService;
 
 import java.util.List;
@@ -24,4 +27,11 @@ public class BlogViewController {
         return "articleList";
     }
 
+    @GetMapping("/articles/{id}")
+    public String getArticle(@PathVariable Long id, Model model) {
+        Article article = blogService.findById(id);
+        model.addAttribute("article", new ArticleViewResponse(article));
+
+        return "article";
+    }
 }
