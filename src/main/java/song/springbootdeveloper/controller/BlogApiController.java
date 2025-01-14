@@ -37,8 +37,16 @@ public class BlogApiController {
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(savedArticle);
-
     }
+
+    //(self)게시글 생성 API의 return 타입을 'Article(엔티티)' -> 'ResponseArticle(DTO)'로 수정해봄
+//    @PostMapping("/api/articles")
+//    public ResponseEntity<ArticleResponse> addArticle(@RequestBody AddArticleRequest request) {
+//        ArticleResponse savedArticle = blogService.save(request);
+//
+//        return ResponseEntity.status(HttpStatus.CREATED)
+//                .body(savedArticle);
+//    }
 
     //게시글 전체 조회 API
     @GetMapping("/api/articles")
