@@ -25,13 +25,4 @@ public class ExampleController {
         return "example";
     }
 
-    @Getter
-    @Setter
-    class Person {
-        private Long id;
-        private String name;
-        private int age;
-        private List<String> hobbies;
-
-    }
 }
